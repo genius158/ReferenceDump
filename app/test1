@@ -1,0 +1,27 @@
+ {
+            methodVisitor = classWriter.visitMethod(0, "<init>", "(I)V", null, null);
+            methodVisitor.visitCode();
+            Label label0 = new Label();
+            methodVisitor.visitLabel(label0);
+            methodVisitor.visitLineNumber(13, label0);
+            methodVisitor.visitVarInsn(ALOAD, 0);
+            methodVisitor.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
+            Label label1 = new Label();
+            methodVisitor.visitLabel(label1);
+            methodVisitor.visitLineNumber(10, label1);
+            methodVisitor.visitVarInsn(ALOAD, 0);
+            methodVisitor.visitTypeInsn(NEW, "com/yan/referencecounttest/Test3");
+            methodVisitor.visitInsn(DUP);
+            methodVisitor.visitMethodInsn(INVOKESPECIAL, "com/yan/referencecounttest/Test3", "<init>", "()V", false);
+            methodVisitor.visitFieldInsn(PUTFIELD, "com/yan/referencecounttest/Test2", "test222", "Lcom/yan/referencecounttest/Test3;");
+            Label label2 = new Label();
+            methodVisitor.visitLabel(label2);
+            methodVisitor.visitLineNumber(15, label2);
+            methodVisitor.visitInsn(RETURN);
+            Label label3 = new Label();
+            methodVisitor.visitLabel(label3);
+            methodVisitor.visitLocalVariable("this", "Lcom/yan/referencecounttest/Test2;", null, label0, label3, 0);
+            methodVisitor.visitLocalVariable("one", "I", null, label0, label3, 1);
+            methodVisitor.visitMaxs(3, 2);
+            methodVisitor.visitEnd();
+        }

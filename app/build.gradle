@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'reference-plugin'
+
+android {
+  compileSdkVersion 30
+  buildToolsVersion "27.0.3"
+  defaultConfig {
+    applicationId "com.yan.referencecounttest"
+    minSdkVersion 15
+    targetSdkVersion 30
+    versionCode 1
+    versionName "1.0"
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled true
+      shrinkResources true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+    debug {
+      shrinkResources false
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+  lintOptions {
+    abortOnError false
+  }
+
+  compileOptions {
+    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_1_8
+  }
+}
+
+dependencies {
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+  //noinspection GradleCompatible
+  implementation 'com.android.support:appcompat-v7:28.0.0'
+  implementation 'org.apache.commons:commons-lang3:3.7'
+  implementation project(path:":referencedumps")
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+implementation 'androidx.annotation:annotation:1.1.0'
+}
+
+repositories {
+  jcenter()
+  google()
+  mavenLocal()
+}
+
+buildscript {
+  repositories {
+    jcenter()
+    google()
+    mavenLocal()
+  }
+}

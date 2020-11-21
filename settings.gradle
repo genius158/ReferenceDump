@@ -1,0 +1,4 @@
+include ':test'
+include ':reference_plugin'
+include ':referencedumps'
+include ':app'
