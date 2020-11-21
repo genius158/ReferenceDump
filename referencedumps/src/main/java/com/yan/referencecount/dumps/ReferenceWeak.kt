@@ -12,6 +12,6 @@ internal class ReferenceWeak<T>(target: T, val stack: String?) : WeakReference<T
     }
 
     override fun equals(other: Any?): Boolean {
-        return get() == other
+        return get() == (other as? ReferenceWeak<*>)?.get()
     }
 }

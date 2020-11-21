@@ -25,7 +25,7 @@ CLASS - com.yan.referencecounttest.Test2  2
 ## how to use 
 in project mode
 ```
-    classpath 'com.yan.referencecount:reference_plugin:0.0.1'
+    classpath 'com.yan.referencecount:reference_plugin:1.0.2'
 ```
  in app module
 ```

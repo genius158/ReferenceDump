@@ -14,7 +14,7 @@ public class ReferencePlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
-        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.0.1");
+        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.0.2");
 
         ReferenceComponentFind.find(project);
 
