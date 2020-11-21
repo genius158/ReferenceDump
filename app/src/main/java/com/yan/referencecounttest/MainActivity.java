@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ReferenceMgr.attachDumpView(getApplication());
         test();
         test = new Test2(1);
         test.test();
@@ -28,16 +28,7 @@ public class MainActivity extends Activity {
         test3.test3();
         ArrayList<String> packageNames = new ArrayList<>();
         packageNames.add(Test3.class.getName());
-        new Thread(() -> {
-            while (true) {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                ReferenceMgr.dump();
-            }
-        }).start();
+
     }
 
     private void test() {

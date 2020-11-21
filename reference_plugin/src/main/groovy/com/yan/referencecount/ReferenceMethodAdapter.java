@@ -78,16 +78,21 @@ public final class ReferenceMethodAdapter extends LocalVariablesSorter implement
         return methodDes;
     }
 
-//    @Override
-//    public void visitInsn(int opcode) {
-//        if (((opcode >= IRETURN && opcode <= RETURN) || opcode == ATHROW)) {
-//            if (referenceExtension.isConstructor(methodName)) {
-//                mv.visitVarInsn(ALOAD, 0);
-//                applyAsyncOffer();
-//                mv.visitInsn(POP);
-//            }
-//        }
-//        super.visitInsn(opcode);
-//    }
+    @Override
+    public void visitInsn(int opcode) {
+        if (((opcode >= IRETURN && opcode <= RETURN) || opcode == ATHROW)) {
+            if (ReferenceComponentFind.activities.contains(className)
+                    || ReferenceComponentFind.providers.contains(className)
+                    || ReferenceComponentFind.services.contains(className)
+                    || ReferenceComponentFind.broadcasts.contains(className)
+            )
+                if (referenceExtension.isConstructor(methodName)) {
+                    mv.visitVarInsn(ALOAD, 0);
+                    applyAsyncOffer();
+                    mv.visitInsn(POP);
+                }
+        }
+        super.visitInsn(opcode);
+    }
 
 }

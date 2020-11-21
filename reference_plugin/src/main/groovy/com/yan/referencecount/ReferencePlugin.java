@@ -14,6 +14,10 @@ public class ReferencePlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
+        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.0.1");
+
+        ReferenceComponentFind.find(project);
+
         BaseExtension extension = null;
         try {
             extension = project.getExtensions().getByType(AppExtension.class);
