@@ -1,6 +1,5 @@
 package com.yan.referencecounttest;
 
-import com.yan.referencecount.dumps.ReferenceMgr;
 
 /**
  * @author Bevan (Contact me: https://github.com/genius158)

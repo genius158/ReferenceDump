@@ -19,7 +19,7 @@ public class ReferenceMgr {
     }
 
     static <T> T asyncOffer(Object obj, Class classWho, String methodWho, String methodDesWho) {
-        if (obj == null) return (T) obj;
+        if (obj == null) return null;
         return (T) reference.kernelAsyncOffer(obj, classWho, methodWho, methodDesWho);
     }
 

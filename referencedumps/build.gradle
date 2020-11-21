@@ -28,9 +28,9 @@ publish {
     repoName = 'maven'
     artifactId = 'referencedumps'
     dryRun = false
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     desc = ""
-    website = 'https://github.com/genius158/burialPlugin'
+    website = 'https://github.com/genius158/ReferenceDump'
 }
 
 android {
