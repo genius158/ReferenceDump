@@ -87,12 +87,13 @@ internal class ReferenceKernel {
 
             Log.e("dumpReference", "CLASS - ${clazz.name}  ${weaks.size}")
             val weakGroup = weaks.groupBy { weak -> weak.stack }.entries.sortedBy { e -> -e.value.size }
+            if (weakGroup.isEmpty()) continue
             for (group in weakGroup) {
                 val stack = group.key ?: continue
                 allCount += group.value.size
                 Log.e("dumpReference", "----> $stack : ${group.value.size}")
             }
-            Log.e("dumpReference", "#")
+            Log.e("dumpReference", "-")
         }
 
         Log.e("dumpReference", "AllCount ----> $allCount")

@@ -1,11 +1,14 @@
 package com.yan.referencecount.dumps.view
 
+import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.graphics.PixelFormat
 import android.os.Build
 import android.provider.Settings
 import android.view.Gravity
 import android.view.WindowManager
+import androidx.annotation.Keep
 
 /**
  * @author Bevan (Contact me: https://github.com/genius158)
@@ -20,13 +23,31 @@ import android.view.WindowManager
  * windowPop.pop.setDimAmount
  * ...
  */
-internal class WindowPop(app: Context) {
+class WindowPop(app: Context) {
     companion object {
         @JvmStatic
-        fun floatingPermissionOk(app: Context): Boolean {
+        internal fun floatingPermissionOk(app: Context): Boolean {
             //检查是否已经授予权限，大于6.0的系统适用，小于6.0系统默认打开，无需理会
             return Build.VERSION.SDK_INT < Build.VERSION_CODES.M
                     || Settings.canDrawOverlays(app)
+        }
+
+
+        private var windowPop: WindowPop? = null
+
+        @Keep
+        @JvmStatic
+        fun attachDumpView(app: Application) {
+            if (windowPop == null) {
+                windowPop = WindowPop(app)
+                ActivityLife(windowPop!!, app)
+            }
+            if (floatingPermissionOk(app)) {
+                windowPop!!.attach()
+            } else {
+                app.startActivity(Intent(app, PermissionActivity::class.java)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            }
         }
     }
 

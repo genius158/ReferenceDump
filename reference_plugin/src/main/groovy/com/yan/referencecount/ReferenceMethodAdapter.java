@@ -89,7 +89,7 @@ public final class ReferenceMethodAdapter extends LocalVariablesSorter implement
                 if (referenceExtension.isConstructor(methodName)) {
                     mv.visitVarInsn(ALOAD, 0);
                     applyAsyncOffer();
-                    mv.visitInsn(POP);
+//                    mv.visitInsn(POP);
                 }
         }
         super.visitInsn(opcode);

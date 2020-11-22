@@ -1,3 +1,4 @@
+include ':referencedumpsview'
 include ':test'
 include ':reference_plugin'
 include ':referencedumps'

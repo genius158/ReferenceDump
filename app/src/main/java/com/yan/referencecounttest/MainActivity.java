@@ -28,7 +28,6 @@ public class MainActivity extends Activity {
         test3.test3();
         ArrayList<String> packageNames = new ArrayList<>();
         packageNames.add(Test3.class.getName());
-
     }
 
     private void test() {

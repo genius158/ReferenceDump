@@ -12,20 +12,15 @@ CLASS - com.yan.referencecounttest.Test3  4
 ----> com.yan.referencecounttest.MainActivity#onCreate(LBundle;)V : 1
       由Test3的test3函数创建了一个
 ----> com.yan.referencecounttest.Test3#test3()V : 1
-#
-CLASS - java.util.WeakHashMap  2
-----> androidx.appcompat.widget.ResourceManagerInternal#<init>()V : 1
-----> androidx.core.view.ViewCompat$AccessibilityPaneVisibilityManager#<init>()V : 1
-#
-CLASS - com.yan.referencecounttest.Test2  2
-----> com.yan.referencecounttest.MainActivity#onCreate(LBundle;)V : 1
-----> com.yan.referencecounttest.Test2#test()V : 1
+new出来的总个数
+AllCount ----> 2005 
+END--------------------------------------------------
 ```
 
 ## how to use 
 in project mode
 ```
-    classpath 'com.yan.referencecount:reference_plugin:1.0.2'
+    classpath 'com.yan.referencecount:reference_plugin:1.0.5'
 ```
  in app module
 ```
@@ -42,6 +37,7 @@ referenceExt {
     // 插桩忽略名单，不需要全类名，内部采用 contains(item)，来剔除配到的类
     // ignoreList = ['com.burial.test.MainActivity2']
     // 作用域 PROJECT,SUB_PROJECTS,EXTERNAL_LIBRARIES,TESTED_CODE,PROVIDED_ONLY
+    // EXTERNAL_LIBRARIES lib范围，可能插桩失败
     scopes = ['PROJECT']
 }
 

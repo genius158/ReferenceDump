@@ -1,11 +1,11 @@
 package com.yan.referencecount;
 
 import com.android.build.gradle.AppExtension;
+import com.android.build.gradle.BaseExtension;
 import com.android.build.gradle.LibraryExtension;
 import com.android.build.gradle.api.BaseVariant;
 
 import org.gradle.api.DomainObjectSet;
-import org.gradle.api.Project;
 import org.jdom2.Attribute;
 import org.jdom2.Content;
 import org.jdom2.Document;
@@ -24,25 +24,17 @@ import java.util.List;
  */
 public class ReferenceComponentFind {
 
-    public static void find(Project project) {
+    public static void find(BaseExtension extension) {
         DomainObjectSet<? extends BaseVariant> variants = null;
-        if (project.getPluginManager().hasPlugin("com.android.application")) {
-            AppExtension appExtension = (AppExtension) project.getProperties().get("android");
-            variants = appExtension.getApplicationVariants();
-        } else if (project.getPluginManager().hasPlugin("com.android.library")) {
-            LibraryExtension appExtension = (LibraryExtension) project.getProperties().get("android");
-            variants = appExtension.getLibraryVariants();
+        if (extension instanceof AppExtension) {
+            variants = ((AppExtension) extension).getApplicationVariants();
+        } else if (extension instanceof LibraryExtension) {
+            variants = ((LibraryExtension) extension).getLibraryVariants();
         }
         if (variants == null) return;
-
         variants.all(bv -> bv.getOutputs().all(baseVariantOutput -> {
-            ReferenceLog.info("BaseVariantOutput   " + baseVariantOutput);
             baseVariantOutput.getProcessManifest().doLast(task -> {
-                ReferenceLog.info("BaseVariantOutput   " + task);
-
                 File manifest = baseVariantOutput.getProcessResources().getManifestFile();
-
-                ReferenceLog.info("BaseVariantOutput   " + manifest.getAbsolutePath());
                 try {
                     parseXml(manifest);
                 } catch (Exception e) {
@@ -115,9 +107,8 @@ public class ReferenceComponentFind {
             }
         }
         //
-        providers.remove("com/yan/highprivacy/PrivacyRestartService");
-        ReferenceLog.info("parseXml   " + providers + " \n" + services + "  \n"
-                + broadcasts + "  \n" + activities);
+        ReferenceLog.info("parseXml   \n" + "providers:" + providers + " \n" + "services:" + services + "  \n"
+                + "broadcasts:" + broadcasts + "  \n" + "activities:" + activities);
     }
 
     public static ArrayList<String> activities = new ArrayList<>();

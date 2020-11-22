@@ -3,6 +3,7 @@ package com.yan.referencecount;
 import com.android.build.gradle.AppExtension;
 import com.android.build.gradle.BaseExtension;
 import com.android.build.gradle.LibraryExtension;
+import com.quinn.hunter.transform.RunVariant;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -11,13 +12,7 @@ import org.gradle.api.UnknownDomainObjectException;
 import java.util.Collections;
 
 public class ReferencePlugin implements Plugin<Project> {
-
-    @Override
-    public void apply(Project project) {
-        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.0.2");
-
-        ReferenceComponentFind.find(project);
-
+    static BaseExtension findExtension(Project project) {
         BaseExtension extension = null;
         try {
             extension = project.getExtensions().getByType(AppExtension.class);
@@ -29,9 +24,26 @@ public class ReferencePlugin implements Plugin<Project> {
                 e2.printStackTrace();
             }
         }
+        return extension;
+    }
+
+    @Override
+    public void apply(Project project) {
+        BaseExtension extension = findExtension(project);
+
         if (extension == null) {
             throw new RuntimeException("error when BurialPlugin apply");
         }
-        extension.registerTransform(new ReferenceTransform(project), Collections.EMPTY_LIST);
+        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.0.8");
+
+        ReferenceExtension referenceExtension = project.getExtensions().create("referenceExt", ReferenceExtension.class);
+        project.afterEvaluate(p -> {
+            if (referenceExtension.runVariant == RunVariant.DEBUG) {
+                project.getDependencies().add("implementation", "com.yan.referencedumps:referencedumpsview:1.0.1");
+            }
+        });
+
+        ReferenceComponentFind.find(extension);
+        extension.registerTransform(new ReferenceTransform(project, referenceExtension), Collections.EMPTY_LIST);
     }
 }

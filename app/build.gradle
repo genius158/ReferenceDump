@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'reference-plugin'
 
 android {
     compileSdkVersion 29
@@ -35,6 +34,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -59,4 +62,17 @@ buildscript {
         google()
         mavenLocal()
     }
+}
+
+apply plugin: 'reference-plugin'
+referenceExt {
+    logEnable = true
+    // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
+    runVariant = 'DEBUG'
+    // 只插桩到当前配置类，不为空，ignoreList失效
+    //  foreList = ['com.burial.test.TestView']
+    // 插桩忽略名单
+//   ignoreList = ['google.android.gms']
+    // 作用域
+    scopes = ['PROJECT','SUB_PROJECTS','EXTERNAL_LIBRARIES']
 }

@@ -12,7 +12,7 @@ internal class ActivityLife(private val windowPop: WindowPop, private val app: A
     init {
         var resumeCount = 0
         app.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
-            override fun onActivityPaused(activity: Activity) {
+            override fun onActivityStopped(activity: Activity) {
                 resumeCount--
                 trigger(resumeCount > 0)
             }
@@ -22,10 +22,10 @@ internal class ActivityLife(private val windowPop: WindowPop, private val app: A
                 trigger(resumeCount > 0)
             }
 
+            override fun onActivityPaused(activity: Activity) {}
             override fun onActivityStarted(activity: Activity) {}
             override fun onActivityDestroyed(activity: Activity) {}
             override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
-            override fun onActivityStopped(activity: Activity) {}
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
         })
     }

@@ -1,11 +1,8 @@
 package com.yan.referencecount.dumps;
 
 import android.app.Application;
-import android.content.Intent;
 
-import com.yan.referencecount.dumps.view.ActivityLife;
-import com.yan.referencecount.dumps.view.PermissionActivity;
-import com.yan.referencecount.dumps.view.WindowPop;
+import java.lang.reflect.Method;
 
 /**
  * @author Bevan (Contact me: https://github.com/genius158)
@@ -18,24 +15,22 @@ public class ReferenceMgr {
         reference.kernelDump();
     }
 
-    static <T> T asyncOffer(Object obj, Class classWho, String methodWho, String methodDesWho) {
+    /**
+     * @hide
+     */
+    public static <T> T asyncOffer(Object obj, Class classWho, String methodWho, String methodDesWho) {
         if (obj == null) return null;
         return (T) reference.kernelAsyncOffer(obj, classWho, methodWho, methodDesWho);
     }
 
 
-    private static WindowPop windowPop = null;
-
     public static void attachDumpView(Application app) {
-        if (windowPop == null) {
-            windowPop = new WindowPop(app);
-            new ActivityLife(windowPop, app);
-        }
-        if (WindowPop.floatingPermissionOk(app)) {
-            windowPop.attach();
-        } else {
-            app.startActivity(new Intent(app, PermissionActivity.class)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        try {
+            Class<?> windowPopClass = Class.forName("com.yan.referencecount.dumps.view.WindowPop");
+            Method attachDumpViewMethod = windowPopClass.getMethod("attachDumpView", Application.class);
+            attachDumpViewMethod.invoke(windowPopClass, app);
+        } catch (Throwable e) {
+            e.printStackTrace();
         }
     }
 

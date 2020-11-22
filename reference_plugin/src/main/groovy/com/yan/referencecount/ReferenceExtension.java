@@ -26,7 +26,7 @@ public class ReferenceExtension {
     /**
      * 那种编译状态下触发
      */
-    public RunVariant runVariant = RunVariant.ALWAYS;
+    public RunVariant runVariant = RunVariant.DEBUG;
 
     /**
      * 作用预
