@@ -16,12 +16,10 @@ public class ReferencePlugin implements Plugin<Project> {
         BaseExtension extension = null;
         try {
             extension = project.getExtensions().getByType(AppExtension.class);
-        } catch (UnknownDomainObjectException e1) {
-            e1.printStackTrace();
+        } catch (UnknownDomainObjectException e) {
             try {
                 extension = project.getExtensions().getByType(LibraryExtension.class);
-            } catch (UnknownDomainObjectException e2) {
-                e2.printStackTrace();
+            } catch (UnknownDomainObjectException ignore) {
             }
         }
         return extension;
@@ -34,7 +32,7 @@ public class ReferencePlugin implements Plugin<Project> {
         if (extension == null) {
             throw new RuntimeException("error when BurialPlugin apply");
         }
-        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.0.8");
+        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.0.9");
 
         ReferenceExtension referenceExtension = project.getExtensions().create("referenceExt", ReferenceExtension.class);
         project.afterEvaluate(p -> {

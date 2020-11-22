@@ -12,8 +12,6 @@ public class ReferenceLog {
     }
 
     static void error(String msg) {
-        if (logEnable) {
-            System.err.println(TAG + ": " + msg);
-        }
+        System.err.println(TAG + ": " + msg);
     }
 }

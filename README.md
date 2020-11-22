@@ -20,7 +20,7 @@ END--------------------------------------------------
 ## how to use 
 in project mode
 ```
-    classpath 'com.yan.referencecount:reference_plugin:1.0.5'
+    classpath 'com.yan.referencecount:reference_plugin:1.0.6'
 ```
  in app module
 ```
@@ -45,11 +45,18 @@ referenceExt {
 
 ## in code 
 ```
-  // 使用attachDumpView方法，添加dump浮窗
-  ReferenceMgr.attachDumpView(getApplication());
+    // 使用attachDumpView方法，添加dump浮窗
+    ReferenceMgr.attachDumpView(getApplication());
 
-  // 或者调用dump方法，打印日志
-  ReferenceMgr.dump();
+    // 或者调用dump方法，打印日志
+    ReferenceMgr.dump();
+
+    // 自定义dump回调，默认打印在logcat
+    ReferenceMgr.setOnDumpListener(new OnDumpListener() {
+            @Override
+            public void onDump(@NotNull HashMap<Class<?>, ArrayList<ReferenceWeak<Object>>> hashMap) {
+            }
+        });
 
 ```
 

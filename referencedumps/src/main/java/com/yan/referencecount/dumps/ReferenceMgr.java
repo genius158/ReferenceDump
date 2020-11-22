@@ -12,15 +12,19 @@ public class ReferenceMgr {
     private static ReferenceKernel reference = new ReferenceKernel();
 
     public static void dump() {
-        reference.kernelDump();
+        reference.dump();
+    }
+
+    public static void setOnDumpListener(OnDumpListener onDumpListener) {
+        if (onDumpListener != null) reference.setOnDumpListener(onDumpListener);
     }
 
     /**
      * @hide
      */
-    public static <T> T asyncOffer(Object obj, Class classWho, String methodWho, String methodDesWho) {
+    public static <T> T asyncOffer(Object obj, Class<?> classWho, String methodWho, String methodDesWho) {
         if (obj == null) return null;
-        return (T) reference.kernelAsyncOffer(obj, classWho, methodWho, methodDesWho);
+        return (T) reference.asyncOffer(obj, classWho, methodWho, methodDesWho);
     }
 
 

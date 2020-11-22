@@ -65,6 +65,8 @@ public class ReferenceComponentFind {
     }
 
     private static void parseXml(File manifest) throws Exception {
+        if (!manifest.exists()) return;
+
         SAXBuilder saxBuilder = new SAXBuilder();
         InputStream is = new FileInputStream(manifest);
         Document document = saxBuilder.build(is);
