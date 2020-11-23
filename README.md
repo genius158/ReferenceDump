@@ -28,8 +28,6 @@ apply plugin: 'reference-plugin'
 
 referenceExt {
     logEnable = true
-    // 是否在代码里插入方法名，提高性能，但是会暴露方法的原本信息
-    listenerWithMethodDetail = true
     // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
     runVariant = 'DEBUG'
     // 只插桩到当前匹配的所有类 如果不为空，ignoreList失效 ，内部采用 contains(item)，来包涵匹配到的类
@@ -38,7 +36,7 @@ referenceExt {
     // ignoreList = ['com.burial.test.MainActivity2']
     // 作用域 PROJECT,SUB_PROJECTS,EXTERNAL_LIBRARIES,TESTED_CODE,PROVIDED_ONLY
     // EXTERNAL_LIBRARIES lib范围，可能插桩失败
-    scopes = ['PROJECT']
+    scopes = ['PROJECT','SUB_PROJECTS']
 }
 
 ```
