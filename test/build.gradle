@@ -34,18 +34,3 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
 }
-
-
-apply plugin: 'reference-plugin'
-referenceExt {
-    logEnable = true
-    // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
-    runVariant = 'DEBUG'
-    // 只插桩到当前配置类，不为空，ignoreList失效
-    //  foreList = ['com.burial.test.TestView']
-    // 插桩忽略名单
-//   ignoreList = ['google.android.gms']
-    // 作用域
-    scopes = ['PROJECT']
-}
-

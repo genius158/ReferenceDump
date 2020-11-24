@@ -24,6 +24,12 @@ public class ReferenceExtension {
     public List<String> ignoreList = new ArrayList<>();
 
     /**
+     * 有些第三次jar包混淆后由些特殊符号，在EXTERNAL_LIBRARIES模式下
+     * 只包插桩到这些
+     */
+    public List<String> librariesOnly = new ArrayList<>();
+
+    /**
      * 那种编译状态下触发
      */
     public RunVariant runVariant = RunVariant.DEBUG;
@@ -95,6 +101,17 @@ public class ReferenceExtension {
     boolean isInWhitelist(String fullQualifiedClassName) {
         boolean inWhiteList = false;
         for (String item : foreList) {
+            if (fullQualifiedClassName.contains(item)) {
+                inWhiteList = true;
+                break;
+            }
+        }
+        return inWhiteList;
+    }
+
+    boolean isInLibrariesOnly(String fullQualifiedClassName) {
+        boolean inWhiteList = false;
+        for (String item : librariesOnly) {
             if (fullQualifiedClassName.contains(item)) {
                 inWhiteList = true;
                 break;

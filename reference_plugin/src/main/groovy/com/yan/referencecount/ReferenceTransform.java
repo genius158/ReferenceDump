@@ -64,9 +64,4 @@ public final class ReferenceTransform extends HunterTransform {
         }
         return SCOPES;
     }
-
-    @Override
-    protected boolean inDuplcatedClassSafeMode() {
-        return true;
-    }
 }

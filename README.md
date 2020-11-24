@@ -20,7 +20,7 @@ END--------------------------------------------------
 ## how to use 
 in project mode
 ```
-    classpath 'com.yan.referencecount:reference_plugin:1.0.6'
+    classpath 'com.yan.referencecount:reference_plugin:1.0.7'
 ```
  in app module
 ```
@@ -30,6 +30,9 @@ referenceExt {
     logEnable = true
     // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
     runVariant = 'DEBUG'
+    // 有些第三次jar包混淆后由些特殊符号,可能会插桩失败,
+    // 在EXTERNAL_LIBRARIES域下，只在librariesOnly匹配上的进行插桩
+    librariesOnly = ['androidx.']
     // 只插桩到当前匹配的所有类 如果不为空，ignoreList失效 ，内部采用 contains(item)，来包涵匹配到的类
     foreList = ['com.burial.test.TestView']
     // 插桩忽略名单，不需要全类名，内部采用 contains(item)，来剔除配到的类

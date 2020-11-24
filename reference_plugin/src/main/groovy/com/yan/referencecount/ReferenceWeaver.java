@@ -1,5 +1,6 @@
 package com.yan.referencecount;
 
+import com.android.build.api.transform.QualifiedContent;
 import com.quinn.hunter.transform.asm.BaseWeaver;
 
 import org.objectweb.asm.ClassVisitor;
@@ -14,8 +15,8 @@ public final class ReferenceWeaver extends BaseWeaver {
     }
 
     @Override
-    public boolean isWeavableClass(String fullQualifiedClassName) {
-        boolean superResult = super.isWeavableClass(fullQualifiedClassName);
+    public boolean isWeavableClass(QualifiedContent input, String fullQualifiedClassName) {
+        boolean superResult = super.isWeavableClass(input, fullQualifiedClassName);
 
         if (referenceExtension != null) {
             if (!referenceExtension.foreList.isEmpty()) {
@@ -23,7 +24,17 @@ public final class ReferenceWeaver extends BaseWeaver {
             }
 
             if (referenceExtension.isInBlacklist(fullQualifiedClassName)) return !superResult;
+
+            if (!referenceExtension.librariesOnly.isEmpty() &&
+                    input.getScopes().contains(QualifiedContent.Scope.EXTERNAL_LIBRARIES)) {
+                boolean libResult = superResult && referenceExtension.isInLibrariesOnly(fullQualifiedClassName);
+                if (libResult) {
+                    ReferenceLog.info("librariesOnly  " + input.getFile() + "   " + fullQualifiedClassName);
+                }
+                return libResult;
+            }
         }
+
         return superResult;
     }
 

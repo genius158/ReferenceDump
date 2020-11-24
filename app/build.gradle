@@ -44,7 +44,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
-//    implementation project(path: ":referencedumps")
+    implementation project(path: ":test")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation 'androidx.annotation:annotation:1.1.0'
@@ -71,6 +71,10 @@ referenceExt {
     runVariant = 'DEBUG'
     // 只插桩到当前配置类，不为空，ignoreList失效
     //  foreList = ['com.burial.test.TestView']
+
+    // 有些第三次jar包混淆后由些特殊符号，在EXTERNAL_LIBRARIES域下
+    // 只包插桩到这些
+    librariesOnly = ['androidx.']
     // 插桩忽略名单
 //   ignoreList = ['google.android.gms']
     // 作用域
