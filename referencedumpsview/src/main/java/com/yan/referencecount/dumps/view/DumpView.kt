@@ -24,7 +24,10 @@ internal class DumpView(ctx: Context, private val windowManager: WindowManager, 
     private val screenSizeHelper = ScreenSizeHelper(windowManager)
 
     private val rect = RectF()
-    private val paint = Paint().also { it.color = Color.parseColor("#6102EE") }
+    private val paint = Paint().also {
+        it.color = Color.parseColor("#6102EE")
+        it.isAntiAlias = true
+    }
 
     override fun onDraw(canvas: Canvas?) {
         canvas ?: return

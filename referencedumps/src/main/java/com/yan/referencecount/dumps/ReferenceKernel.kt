@@ -41,14 +41,20 @@ internal class ReferenceKernel : OnDumpListener {
      * 清理空引用
      */
     private fun cleanUp() {
-        referenceWeakMap.forEach { entry ->
-            val iterator = entry.value.iterator()
+        val mapIterator = referenceWeakMap.iterator()
+        while (mapIterator.hasNext()) {
+            val entity = mapIterator.next()
+            val list = entity.value
+
+            val iterator = list.iterator()
             while (iterator.hasNext()) {
-                if (iterator.next().get() == null) iterator.remove()
+                val weak = iterator.next()
+                if (weak.get() == null) iterator.remove()
             }
+
+            if (list.isEmpty()) mapIterator.remove()
         }
     }
-
 
     override fun onDump(classMap: HashMap<Class<*>, ArrayList<ReferenceWeak<Any?>>>) {
         onDumpListener.onDump(classMap)

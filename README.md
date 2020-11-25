@@ -3,7 +3,8 @@ dump new出来的对象个数
 
 ```
 日志
-
+START--------------------------------------------------
+RefCount ---->| 28 |<---- new出来的总个数
 com.yan.referencecounttest.Test3 对像有四个
 CLASS - com.yan.referencecounttest.Test3  4
       由Test2的构造函数创建了两个
@@ -12,15 +13,13 @@ CLASS - com.yan.referencecounttest.Test3  4
 ----> com.yan.referencecounttest.MainActivity#onCreate(LBundle;)V : 1
       由Test3的test3函数创建了一个
 ----> com.yan.referencecounttest.Test3#test3()V : 1
-new出来的总个数
-AllCount ----> 2005 
 END--------------------------------------------------
 ```
 
 ## how to use 
 in project mode
 ```
-    classpath 'com.yan.referencecount:reference_plugin:1.0.7'
+    classpath 'com.yan.referencecount:reference_plugin:1.0.8'
 ```
  in app module
 ```

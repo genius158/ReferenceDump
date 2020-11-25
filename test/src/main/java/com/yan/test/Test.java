@@ -5,4 +5,7 @@ package com.yan.test;
  * @since 2020/11/24
  */
 public class Test {
+    void test(){
+
+    }
 }

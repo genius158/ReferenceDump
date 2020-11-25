@@ -74,7 +74,7 @@ referenceExt {
 
     // 有些第三次jar包混淆后由些特殊符号，在EXTERNAL_LIBRARIES域下
     // 只包插桩到这些
-    librariesOnly = ['androidx.']
+//    librariesOnly = ['androidx.']
     // 插桩忽略名单
 //   ignoreList = ['google.android.gms']
     // 作用域
