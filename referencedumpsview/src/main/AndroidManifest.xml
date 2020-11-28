@@ -6,7 +6,13 @@
         <activity
             android:name="com.yan.referencecount.dumps.view.PermissionActivity"
             android:excludeFromRecents="true"
+            android:exported="false"
             android:noHistory="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name=".AutoShowProvider"
+            android:authorities="com.yan.referencecount.dumps.view"
+            android:exported="false" />
     </application>
 </manifest>

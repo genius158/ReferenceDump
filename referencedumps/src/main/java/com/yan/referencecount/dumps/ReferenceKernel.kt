@@ -31,7 +31,7 @@ internal class ReferenceKernel : OnDumpListener {
 
     fun dump() {
         referenceHandler.post {
-            Runtime.getRuntime().gc()
+//            Runtime.getRuntime().gc()
             cleanUp()
             onDump(referenceWeakMap)
         }

@@ -1,37 +1,37 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
-apply plugin: 'com.novoda.bintray-release'
-
-def userName
-def userKey
-File file = rootProject.file('local.properties')
-if (file.exists()) {
-    //加载资源
-    InputStream inputStream = rootProject.file('local.properties').newDataInputStream();
-    Properties properties = new Properties()
-    properties.load(inputStream)
-
-    if (properties.containsKey("bintray.user")) {
-        userName = properties.getProperty("bintray.user")
-    }
-    if (properties.containsKey("bintray.apikey")) {
-        userKey = properties.getProperty("bintray.apikey")
-    }
-}
-
-publish {
-    userOrg = 'yan157'
-    groupId = 'com.yan.referencedumps'
-    bintrayUser = userName
-    bintrayKey = userKey
-    repoName = 'maven'
-    artifactId = 'referencedumpsview'
-    dryRun = false
-    publishVersion = '1.0.4'
-    desc = ""
-    website = 'https://github.com/genius158/ReferenceDump'
-}
+//apply plugin: 'com.novoda.bintray-release'
+//
+//def userName
+//def userKey
+//File file = rootProject.file('local.properties')
+//if (file.exists()) {
+//    //加载资源
+//    InputStream inputStream = rootProject.file('local.properties').newDataInputStream();
+//    Properties properties = new Properties()
+//    properties.load(inputStream)
+//
+//    if (properties.containsKey("bintray.user")) {
+//        userName = properties.getProperty("bintray.user")
+//    }
+//    if (properties.containsKey("bintray.apikey")) {
+//        userKey = properties.getProperty("bintray.apikey")
+//    }
+//}
+//
+//publish {
+//    userOrg = 'yan157'
+//    groupId = 'com.yan.referencedumps'
+//    bintrayUser = userName
+//    bintrayKey = userKey
+//    repoName = 'maven'
+//    artifactId = 'referencedumpsview'
+//    dryRun = false
+//    publishVersion = '1.0.5'
+//    desc = ""
+//    website = 'https://github.com/genius158/ReferenceDump'
+//}
 
 android {
     compileSdkVersion 29
