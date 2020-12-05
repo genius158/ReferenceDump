@@ -5,6 +5,8 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
+import com.yan.referencecount.dump.objectcalculate.ObjectCalculator
+import com.yan.referencecount.dumps.ReferenceMgr
 
 /**
  * @author Bevan (Contact me: https://github.com/genius158)
@@ -12,8 +14,10 @@ import android.net.Uri
  */
 class AutoShowProvider : ContentProvider() {
     override fun onCreate(): Boolean {
+        ReferenceMgr.setOnDumpListener(OnDumpWithSizeListener.ins)
         val app = context?.applicationContext as Application
         WindowPop.attachDumpView(app)
+        ObjectCalculator.ins.loadCtx(app)
         return true
     }
 

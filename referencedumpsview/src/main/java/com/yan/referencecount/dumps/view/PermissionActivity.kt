@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import androidx.fragment.app.FragmentActivity
-import com.yan.referencecount.dumps.ReferenceMgr
 
 /**
  * @author Bevan (Contact me: https://github.com/genius158)
@@ -30,7 +29,7 @@ class PermissionActivity : FragmentActivity() {
 
     private fun logicPermission() {
         if (WindowPop.floatingPermissionOk(this)) {
-            ReferenceMgr.attachDumpView(application)
+            WindowPop.attachDumpView(application)
         } else if (shouldShowRequestPermissionRationale(permission[0])) {
             requestPermissions(permission, 2)
         } else {

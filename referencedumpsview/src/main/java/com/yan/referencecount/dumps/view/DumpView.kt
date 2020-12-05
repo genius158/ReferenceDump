@@ -1,15 +1,14 @@
 package com.yan.referencecount.dumps.view
 
 import android.content.Context
-import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
-import android.view.Gravity
-import android.view.MotionEvent
-import android.view.ViewConfiguration
-import android.view.WindowManager
+import android.graphics.Outline
+import android.graphics.drawable.ColorDrawable
+import android.util.TypedValue
+import android.view.*
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.widget.TextViewCompat
 import com.yan.referencecount.dumps.ReferenceMgr
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -18,24 +17,10 @@ import kotlin.math.sqrt
  * @author Bevan (Contact me: https://github.com/genius158)
  * @since  2020/11/21
  */
-internal class DumpView(ctx: Context, private val windowManager: WindowManager, private val lpWindow: WindowManager.LayoutParams) : AppCompatTextView(ctx) {
+internal class DumpView(ctx: Context, private val windowManager: WindowManager, private val lpWindow: WindowManager.LayoutParams) : LinearLayout(ctx) {
     private val touchSlop = ViewConfiguration.get(ctx).scaledTouchSlop
 
     private val screenSizeHelper = ScreenSizeHelper(windowManager)
-
-    private val rect = RectF()
-    private val paint = Paint().also {
-        it.color = Color.parseColor("#6102EE")
-        it.isAntiAlias = true
-    }
-
-    override fun onDraw(canvas: Canvas?) {
-        canvas ?: return
-        rect.set(0F, 0F, width.toFloat(), height.toFloat())
-        val radius = width.coerceAtMost(height) / 2F
-        canvas.drawRoundRect(rect, radius, radius, paint)
-        super.onDraw(canvas)
-    }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         runCatching { dellEvent(ev) }
@@ -128,22 +113,67 @@ internal class DumpView(ctx: Context, private val windowManager: WindowManager, 
         windowManager.updateViewLayout(this, layoutParams)
     }
 
+    private val viewHeight by lazy { screenSizeHelper.screenSize.widthPixels.coerceAtMost(screenSizeHelper.screenSize.heightPixels) / 6 }
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val size = screenSizeHelper.screenSize.widthPixels.coerceAtMost(screenSizeHelper.screenSize.heightPixels) / 6
-        super.onMeasure(MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY))
+        val width = viewHeight * 2 / 3
+        if (width != measuredWidth) {
+            super.onMeasure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(viewHeight, MeasureSpec.EXACTLY))
+        }
+        setMeasuredDimension(width, viewHeight)
+    }
+
+    private val countOnly = providerTxtView()
+    private val withSize = providerTxtView()
+
+    private fun providerTxtView(): AppCompatTextView {
+        return object : AppCompatTextView(context) {
+            override fun requestLayout() {}
+        }.also { tv ->
+            addView(tv, -1, -1)
+            tv.setTextColor(Color.WHITE)
+            (tv.layoutParams as LayoutParams).weight = 1F
+            val padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4F, resources.displayMetrics).toInt()
+            tv.setPadding(padding, 0, padding, 0)
+            tv.setLines(1)
+            TextViewCompat.setAutoSizeTextTypeWithDefaults(tv, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM)
+            TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(tv, 8, 14, 1, TypedValue.COMPLEX_UNIT_DIP)
+            tv.gravity = Gravity.CENTER
+        }
     }
 
     init {
-        text = "dump"
-        setTextColor(Color.WHITE)
-        gravity = Gravity.CENTER
-        setOnClickListener { ReferenceMgr.dump() }
+        orientation = VERTICAL
+
+        countOnly.text = "num"
+        withSize.text = "mem"
+
+        countOnly.setOnClickListener {
+            OnDumpWithSizeListener.ins.dumpWithSize(false)
+            ReferenceMgr.dump()
+        }
+
+        val countBg = ColorDrawable(0xFFEE9A00.toInt())
+        countOnly.background = countBg
+        val sizeBg = ColorDrawable(0xFF4169E1.toInt())
+        withSize.background = sizeBg
+
+        withSize.setOnClickListener {
+            OnDumpWithSizeListener.ins.dumpWithSize(true)
+            ReferenceMgr.dump()
+        }
 
         post {
             moving(intArrayOf(lpWindow.x, lpWindow.y), floatArrayOf(0F, 0F)
                     , screenSizeHelper.screenSize.widthPixels.toFloat()
                     , screenSizeHelper.screenSize.heightPixels / 2F)
         }
+
+        outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View?, outline: Outline?) {
+                outline?.setRoundRect(0, 0, measuredWidth, measuredHeight, (measuredWidth / 3).toFloat())
+            }
+        }
+        clipToOutline = true
+        setWillNotDraw(false)
     }
 }
