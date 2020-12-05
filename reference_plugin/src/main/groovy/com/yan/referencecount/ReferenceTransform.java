@@ -5,8 +5,8 @@ import com.android.build.api.transform.QualifiedContent;
 import com.android.build.api.transform.TransformException;
 import com.android.build.api.transform.TransformInput;
 import com.android.build.api.transform.TransformOutputProvider;
-import com.quinn.hunter.transform.HunterTransform;
-import com.quinn.hunter.transform.RunVariant;
+import com.quinn.hunter.rctransform.HunterTransform;
+import com.quinn.hunter.rctransform.RunVariant;
 
 import org.gradle.api.Project;
 

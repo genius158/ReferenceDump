@@ -1,7 +1,7 @@
 package com.yan.referencecount;
 
 import com.android.build.api.transform.QualifiedContent;
-import com.quinn.hunter.transform.RunVariant;
+import com.quinn.hunter.rctransform.RunVariant;
 
 import java.util.ArrayList;
 import java.util.HashSet;

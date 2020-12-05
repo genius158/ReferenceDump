@@ -1,4 +1,4 @@
-package com.quinn.hunter.transform;
+package com.quinn.hunter.rctransform;
 
 import com.android.build.api.transform.Context;
 import com.android.build.api.transform.DirectoryInput;
@@ -12,8 +12,8 @@ import com.android.build.api.transform.TransformInput;
 import com.android.build.api.transform.TransformOutputProvider;
 import com.android.build.gradle.internal.pipeline.TransformManager;
 import com.android.ide.common.internal.WaitableExecutor;
-import com.quinn.hunter.transform.asm.BaseWeaver;
-import com.quinn.hunter.transform.asm.ClassLoaderHelper;
+import com.quinn.hunter.rctransform.asm.BaseWeaver;
+import com.quinn.hunter.rctransform.asm.ClassLoaderHelper;
 
 import org.apache.commons.io.FileUtils;
 import org.gradle.api.Project;

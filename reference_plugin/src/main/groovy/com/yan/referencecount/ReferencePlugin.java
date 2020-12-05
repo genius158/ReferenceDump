@@ -3,7 +3,7 @@ package com.yan.referencecount;
 import com.android.build.gradle.AppExtension;
 import com.android.build.gradle.BaseExtension;
 import com.android.build.gradle.LibraryExtension;
-import com.quinn.hunter.transform.RunVariant;
+import com.quinn.hunter.rctransform.RunVariant;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -32,12 +32,12 @@ public class ReferencePlugin implements Plugin<Project> {
         if (extension == null) {
             throw new RuntimeException("error when BurialPlugin apply");
         }
-        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.1.2");
+        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.1.3");
 
         ReferenceExtension referenceExtension = project.getExtensions().create("referenceExt", ReferenceExtension.class);
         project.afterEvaluate(p -> {
             if (referenceExtension.runVariant == RunVariant.DEBUG) {
-                project.getDependencies().add("implementation", "com.yan.referencedumps:referencedumpsview:1.0.5");
+                project.getDependencies().add("implementation", "com.yan.referencedumps:referencedumpsview:1.0.8");
             }
         });
 

@@ -1,7 +1,7 @@
 package com.yan.referencecount;
 
 import com.android.build.api.transform.QualifiedContent;
-import com.quinn.hunter.transform.asm.BaseWeaver;
+import com.quinn.hunter.rctransform.asm.BaseWeaver;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
