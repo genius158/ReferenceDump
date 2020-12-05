@@ -28,7 +28,7 @@ publish {
     repoName = 'maven'
     artifactId = 'referencedumps'
     dryRun = false
-    publishVersion = '1.1.2'
+    publishVersion = '1.1.3'
     desc = ""
     website = 'https://github.com/genius158/ReferenceDump'
 }
