@@ -21,6 +21,7 @@ public class JVMTIHelper {
             packageCodePath = context.getPackageCodePath();
             ClassLoader classLoader = context.getClassLoader();
             Method findLibrary = ClassLoader.class.getDeclaredMethod("findLibrary", String.class);
+            findLibrary.setAccessible(true);
             String jvmtiAgentLibPath = (String) findLibrary.invoke(classLoader, "jvmti_agent");
             File filesDir = context.getFilesDir();
             File jvmtiLibDir = new File(filesDir, "jvmti");
