@@ -1,25 +1,27 @@
 # reference-plugin
-dump new出来的对象个数
+dump new出来的对象个数，大小   
+内存占用大小目前使用jvm ti，android9及以上才支持
 
 ```
 日志
 START--------------------------------------------------
-RefCount ---->| 28 |<---- new出来的总个数
-com.yan.referencecounttest.Test3 对像有四个
-CLASS - com.yan.referencecounttest.Test3  4
-      由Test2的构造函数创建了两个
-----> com.yan.referencecounttest.Test2#<init>(I)V : 2
-      由MainActivity的onCreate函数创建了一个
-----> com.yan.referencecounttest.MainActivity#onCreate(LBundle;)V : 1
-      由Test3的test3函数创建了一个
-----> com.yan.referencecounttest.Test3#test3()V : 1
+-
+//StringBuilder存在14个
+CLASS - java.lang.StringBuilder count: 14
+// 耗4624字节，由App$onCreate$1#timer产生11个对象
+----> size(byte): 4624 count: 11  
+com.yan.referencecounttest.App$onCreate$1#timer(LBurialTimer;LString;LString;LString;J)V
+//耗1064字节，由App$onCreate$1#<clinit>()V 产生3个对象
+----> size(byte): 1064 count: 3  com.yan.referencecounttest.App$onCreate$1#<clinit>()V 
+// 总共占5688字节
+----> size(byte): 5688 *
 END--------------------------------------------------
 ```
 
 ## how to use 
 in project mode
 ```
-    classpath 'com.yan.referencecount:reference_plugin:1.0.9'
+    classpath 'com.yan.referencecount:reference_plugin:1.1.0'
 ```
  in app module
 ```
