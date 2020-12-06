@@ -1,0 +1,161 @@
+ext.moduleListConfig = [:]
+
+///////////////////////// 自定义部分开始 //////////////////////////////
+ext {
+    // 强制全部依赖
+    foreIncludeAll = true
+
+    // 哪些模块需要自动lib转app
+    autoModule = [":test", ":test2"]
+}
+// 只引入test模块
+//includeModule(":test", [":test2", ":router", ":moduleadapter"])
+includeModule(":test2", [":router", ":moduleadapter"])
+
+///////////////////////// 自定义部分结束 //////////////////////////////
+
+///////////////////////////////////////////////////////////////////
+///                                                             ///
+///                         大大的分割框                          ///
+///                                                             ///
+///////////////////////////////////////////////////////////////////
+// 检查设置文件是否发符合要求
+checkSettingChange()
+//////////////////////////divide//////////////////////////////////
+
+// 实现模块化app模式下，主app模块不引入当前模块
+class ModelDependencies {
+    ArrayList<Project> implementations = new ArrayList<>()
+
+    void implementation(Project project) {
+        implementations.add(project)
+    }
+}
+
+// 模块化的时候控制app对模块的引用
+gradle.projectsLoaded { g ->
+    g.rootProject.getSubprojects().each { Project project ->
+        def modelDependencies = project.getExtensions().create("modelDependencies", ModelDependencies.class)
+        project.afterEvaluate {
+            modelDependencies.implementations.each { module ->
+                if (moduleListConfig.find { entity -> entity.key.contains(module.name) } == null) {
+                    project.dependencies { implementation module }
+                }
+            }
+        }
+    }
+}
+
+//////////////////////////divide//////////////////////////////////
+def includeModule(module) {
+    includeModule(module, [])
+}
+
+def includeModule(module, dependencies) {
+    moduleListConfig[module] = dependencies
+    include module
+    dependencies.each { m -> include m }
+}
+
+//////////////////////////divide//////////////////////////////////
+// 模块自动转换
+gradle.projectsLoaded { g ->
+    g.rootProject.getSubprojects().each { Project project ->
+        def build = project.buildscript.sourceFile
+        if (!build.exists()) return null
+
+        autoModule.each { String module ->
+            module = module.replace(":", "")
+            if (module == project.name) {
+                def hookInclude = moduleListConfig.find { entity -> entity.key.replace(":", "") == module } != null
+                if (hookInclude) {
+                    project.ant.replace(
+                            file: build,
+                            token: "apply plugin: 'com.android.library'",
+                            value: "apply plugin: 'com.android.application'"
+                    )
+                    insertAppConfig(project)
+                    println "hookInclude ${project.name} do library to application "
+                } else {
+                    project.ant.replace(
+                            file: build,
+                            token: "apply plugin: 'com.android.application'",
+                            value: "apply plugin: 'com.android.library'"
+                    )
+                    println "hookInclude ${project.name} do application to library "
+                }
+            }
+        }
+    }
+}
+
+/**
+ * 注入同时依赖module 的manifest
+ * @param p
+ * @return
+ */
+static def insertAppConfig(Project p) {
+    p.afterEvaluate {
+        p.android.defaultConfig.applicationId "com.yan.application"
+
+        def srcDir = new File(p.projectDir.canonicalPath + "/src")
+        def moduleDir = new File(srcDir.canonicalPath + "/module")
+        def moduleManifest = new File(p.projectDir.canonicalPath + "/src/module/AndroidManifest.xml")
+        if (!moduleDir.exists()) moduleDir.mkdirs()
+
+        def manifest = new File(srcDir.canonicalPath + "/main/AndroidManifest.xml")
+        if (!moduleManifest.exists()) {
+            p.ant.copy(file: "$manifest.canonicalPath", tofile: "$moduleManifest.canonicalPath")
+        }
+
+        def moduleManifestTxt = moduleManifest.getText()
+        if (!moduleManifestTxt.contains("<application")) {
+            moduleManifestTxt = moduleManifestTxt.replaceAll("\\s/\\s", "")
+            moduleManifestTxt = moduleManifestTxt.replace("</manifest>",
+                    " <application " +
+                            "android:name=\"com.yan.moduleadapter.ModuleApplication\">\n" +
+                            "        <activity android:name=\"TestActivity\">\n" +
+                            "            <intent-filter>\n" +
+                            "                <action android:name=\"android.intent.action.MAIN\" />\n" +
+                            "\n" +
+                            "                <category android:name=\"android.intent.category.LAUNCHER\" />\n" +
+                            "            </intent-filter>\n" +
+                            "        </activity>\n" +
+                            "    </application>\n" +
+                            "</manifest>"
+            )
+            moduleManifest.write(moduleManifestTxt)
+        }
+
+        p.android.sourceSets.main.manifest.srcFile("src/module/AndroidManifest.xml")
+
+
+        def moduleJavaDir = new File(p.projectDir.canonicalPath + "/src/module/java")
+        if (!moduleJavaDir.exists()) moduleJavaDir.mkdirs()
+        p.android.sourceSets.main.java.srcDir(moduleJavaDir.canonicalPath)
+    }
+}
+
+
+/////////////////////////检测setting脚本的正确性/////////////////////
+def checkSettingChange() {
+    gradle.projectsLoaded {
+        def rootPath = rootProject.projectDir.canonicalPath
+        def setting = file(rootPath + "/settings.gradle")
+        def settingText = setting.getText()
+        def unModulePart = settingText.replaceAll("if.*hookInclude.*\\).*\\{[^}]+}", "")
+        if (unModulePart.contains("include")) {
+            throw new RuntimeException("请保证在settings.gradle\n" +
+                    "include模块写在 if (!hookInclude || foreIncludeAll) 内\n" +
+                    "例:\n" +
+                    "if (!hookInclude || foreIncludeAll) {\n" +
+                    "    include ':app'\n" +
+                    "}")
+        }
+    }
+}
+
+
+////////////////////////给setting文件设置用///////////////////////////
+// 是否hook原本的include
+ext { hookInclude = moduleListConfig.iterator().size() > 0 }

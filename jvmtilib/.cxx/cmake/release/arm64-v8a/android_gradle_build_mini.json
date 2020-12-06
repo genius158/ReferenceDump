@@ -1,0 +1,22 @@
+{
+  "buildFiles": [
+    "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Users/yanxianwei/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/arm64-v8a --target clean"
+  ],
+  "libraries": {
+    "jvmti_agent-Release-arm64-v8a": {
+      "artifactName": "jvmti_agent",
+      "buildCommand": "/Users/yanxianwei/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/arm64-v8a --target jvmti_agent",
+      "abi": "arm64-v8a",
+      "output": "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/build/intermediates/cmake/release/obj/arm64-v8a/libjvmti_agent.so"
+    },
+    "dexter-Release-arm64-v8a": {
+      "artifactName": "dexter",
+      "buildCommand": "/Users/yanxianwei/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/arm64-v8a --target dexter",
+      "abi": "arm64-v8a",
+      "output": "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/arm64-v8a/libdexter.a"
+    }
+  }
+}

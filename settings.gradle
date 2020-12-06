@@ -1,5 +1,15 @@
-include ':referencedumpsview'
-include ':test'
-include ':reference_plugin'
-include ':referencedumps'
-include ':app'
+apply from: "./moduleconfig.gradle"
+
+if (!hookInclude || foreIncludeAll) {
+    include ':test2'
+    include ':objectcalculate'
+//    include ':jvmtilib'
+    include ':router'
+    include ':test'
+    include ':referencedumpsview'
+    include ':reference_plugin'
+    include ':referencedumps'
+    include ':app'
+}
+
+

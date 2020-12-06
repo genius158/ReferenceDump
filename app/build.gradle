@@ -8,10 +8,12 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.yan.referencecounttest"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+
+        javaCompileOptions.annotationProcessorOptions.arguments["AROUTER_MODULE_NAME"] = project.name
     }
 
     buildTypes {
@@ -38,16 +40,34 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation project(path: ":test")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation 'androidx.annotation:annotation:1.1.0'
+
+    implementation project(":router")
+//    implementation project(":referencedumpsview")
+//    implementation 'com.yan.burial:burial-plugin:1.1.2'
+    api "com.alibaba:arouter-api:$rootProject.arouterVersion"
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
+}
+
+
+modelDependencies {
+    implementation project(":test")
 }
 
 repositories {
@@ -66,7 +86,7 @@ buildscript {
 
 apply plugin: 'reference-plugin'
 referenceExt {
-    logEnable = true
+    logEnable = false
     // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
     runVariant = 'DEBUG'
     // 只插桩到当前配置类，不为空，ignoreList失效
@@ -76,7 +96,24 @@ referenceExt {
     // 只包插桩到这些
 //    librariesOnly = ['androidx.']
     // 插桩忽略名单
-//   ignoreList = ['google.android.gms']
+     ignoreList = ['com.yan.burial.method.timer']
+
     // 作用域
-    scopes = ['PROJECT','SUB_PROJECTS','EXTERNAL_LIBRARIES']
+    scopes = ['PROJECT', 'SUB_PROJECTS']
+}
+
+apply plugin: 'burial-plugin'
+
+burialExt {
+    logEnable = false
+    // 是否在代码里插入方法名，提高性能，但是会暴露方法的原本信息
+    listenerWithMethodDetail = true
+    // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
+    runVariant = 'DEBUG'
+    // 只插桩到当前匹配的所有类 如果不为空，ignoreList失效 ，内部采用 contains(item)，来包涵匹配到的类
+//    foreList = ['com.burial.test.TestView']
+    // 插桩忽略名单，不需要全类名，内部采用 contains(item)，来剔除配到的类
+    ignoreList = ['com.yan.referencecount']
+    // 作用域 PROJECT,SUB_PROJECTS,EXTERNAL_LIBRARIES,TESTED_CODE,PROVIDED_ONLY
+    scopes = ['PROJECT', 'SUB_PROJECTS', 'EXTERNAL_LIBRARIES']
 }

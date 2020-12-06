@@ -6,6 +6,7 @@ package com.yan.referencecounttest
  */
 class Test3 {
     var test3: Test3? = null
+    var longTest=34L
     fun test3() {
         test3 = Test3()
     }

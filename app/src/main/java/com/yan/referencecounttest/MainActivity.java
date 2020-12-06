@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.yan.router.TestRouterMgr;
+
 import java.util.ArrayList;
 
 /**
@@ -20,7 +22,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        app=getApplication();
+        app = getApplication();
         test();
         test = new Test2(1);
         test.test();
@@ -29,9 +31,7 @@ public class MainActivity extends Activity {
         ArrayList<String> packageNames = new ArrayList<>();
         packageNames.add(Test3.class.getName());
 
-
-
-
+        TestRouterMgr.getRouter().sayTest();
 
     }
 

@@ -1,0 +1,22 @@
+{
+  "buildFiles": [
+    "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Users/yanxianwei/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "dexter-Release-armeabi-v7a": {
+      "artifactName": "dexter",
+      "buildCommand": "/Users/yanxianwei/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/armeabi-v7a --target dexter",
+      "abi": "armeabi-v7a",
+      "output": "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/armeabi-v7a/libdexter.a"
+    },
+    "jvmti_agent-Release-armeabi-v7a": {
+      "artifactName": "jvmti_agent",
+      "buildCommand": "/Users/yanxianwei/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/armeabi-v7a --target jvmti_agent",
+      "abi": "armeabi-v7a",
+      "output": "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/build/intermediates/cmake/release/obj/armeabi-v7a/libjvmti_agent.so"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/x86/CMakeFiles/edit_cache.dir
+/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/x86/CMakeFiles/rebuild_cache.dir
+/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/x86/CMakeFiles/jvmti_agent.dir
+/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/release/x86/CMakeFiles/dexter.dir

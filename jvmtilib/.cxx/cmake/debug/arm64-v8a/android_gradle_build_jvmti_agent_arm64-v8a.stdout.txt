@@ -1,0 +1,33 @@
+[1/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/bytecode_encoder.cc.o
+[2/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/code_ir.cc.o
+[3/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/common.cc.o
+[4/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/control_flow_graph.cc.o
+[5/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/debuginfo_encoder.cc.o
+[6/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/dex_bytecode.cc.o
+[7/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/dex_format.cc.o
+[8/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/dex_ir.cc.o
+[9/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/dex_ir_builder.cc.o
+[10/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/dex_utf8.cc.o
+[11/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/instrumentation.cc.o
+[12/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/reader.cc.o
+[13/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/tryblocks_encoder.cc.o
+[14/17] Building CXX object CMakeFiles/dexter.dir/src/main/cpp/dexer/writer.cc.o
+[15/17] Linking CXX static library libdexter.a
+[16/17] Building CXX object CMakeFiles/jvmti_agent.dir/src/main/cpp/native-lib.cpp.o
+/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/native-lib.cpp:488:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/native-lib.cpp:493:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/native-lib.cpp:28:1: warning: unused function 'addLabel' [-Wunused-function]
+addLabel(CodeIr &c,
+^
+/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/native-lib.cpp:75:1: warning: unused function 'ClassNameToDescriptor' [-Wunused-function]
+ClassNameToDescriptor(const char *class_name) {
+^
+/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/native-lib.cpp:86:1: warning: unused function 'getNumParams' [-Wunused-function]
+getNumParams(ir::EncodedMethod *method) {
+^
+5 warnings generated.
+[17/17] Linking CXX shared library ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libjvmti_agent.so

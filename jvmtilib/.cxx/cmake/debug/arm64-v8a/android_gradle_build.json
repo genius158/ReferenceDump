@@ -1,0 +1,137 @@
+
+{
+	"buildFiles" : 
+	[
+		"/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/CMakeLists.txt"
+	],
+	"cleanCommands" : 
+	[
+		"/Users/yanxianwei/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a --target clean"
+	],
+	"cppFileExtensions" : [ "cc", "cpp" ],
+	"libraries" : 
+	{
+		"dexter-Debug-arm64-v8a" : 
+		{
+			"abi" : "arm64-v8a",
+			"artifactName" : "dexter",
+			"buildCommand" : "/Users/yanxianwei/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a --target dexter",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/bytecode_encoder.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/code_ir.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/common.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/control_flow_graph.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/debuginfo_encoder.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/dex_bytecode.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/dex_format.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/dex_ir.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/dex_ir_builder.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/dex_utf8.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/instrumentation.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/reader.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/tryblocks_encoder.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot   -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/dexer/writer.cc",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				}
+			],
+			"output" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a/libdexter.a",
+			"toolchain" : "1161495342146888591"
+		},
+		"jvmti_agent-Debug-arm64-v8a" : 
+		{
+			"abi" : "arm64-v8a",
+			"artifactName" : "jvmti_agent",
+			"buildCommand" : "/Users/yanxianwei/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a --target jvmti_agent",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Djvmti_agent_EXPORTS -I../../../../src/main/cpp/dexer  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -std=c++11 -frtti -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-shift-count-overflow -Wno-error=non-virtual-dtor -Wno-sign-compare -Wno-switch -Wno-missing-braces -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/src/main/cpp/native-lib.cpp",
+					"workingDirectory" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/.cxx/cmake/debug/arm64-v8a"
+				}
+			],
+			"output" : "/Users/yanxianwei/AndroidStudioProjects/ReferceCount/jvmtilib/build/intermediates/cmake/debug/obj/arm64-v8a/libjvmti_agent.so",
+			"toolchain" : "1161495342146888591"
+		}
+	},
+	"toolchains" : 
+	{
+		"1161495342146888591" : 
+		{
+			"cCompilerExecutable" : "/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/yanxianwei/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+		}
+	}
+}
