@@ -1,7 +1,7 @@
 ## 优化组件切换
 组件化，这里就不啰嗦了，类似的文章太多了     
-这里讲讲怎么**自动化** [核心gradle脚本插件链接](url)    
-**大前提，所有模块都是Androidstudio默认的形式生成，不去手动增减任何build.gradle内部的用于判断组件的脚本**    
+这里讲讲怎么**自动化** [核心gradle脚本插件https://github.com/genius158/ReferenceDump/blob/main/moduleconfig.gradle](https://github.com/genius158/ReferenceDump/blob/main/moduleconfig.gradle)    
+**大前提，所有模块都是AndroidStudio默认的形式生成，不去手动增减任何build.gradle内部的用于判断组件的脚本**    
 例如这样的:
 `
 if (isDebug.toBoolean()) {
@@ -167,7 +167,7 @@ com.yan.referencecounttest.App$onCreate$1#timer(LBurialTimer;LString;LString;LSt
 // 总共占5688字节
 ----> size(byte): 5688 *
 ```
-怎么发现问题，就上面这段日志，每次查看内存日志App$onCreate$1#timer路径下的StringBuilder一致在增加，属于临时对象大量产生，我们就可以用一个成员变量来优化
+怎么发现问题，就上面这段日志，每次查看内存日志App$onCreate$1#timer路径下的StringBuilder一直在增加，属于临时对象大量产生，我们就可以用一个成员变量来优化
 ```
 BurialTimer.getTimer().setListener { ignore, className, methodName, des, cost ->
            if (cost>0){
@@ -190,3 +190,4 @@ override fun onCreate() {
     }
 
 ```
+[git地址https://github.com/genius158/ReferenceDump](https://github.com/genius158/ReferenceDump)
