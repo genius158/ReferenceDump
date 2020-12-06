@@ -2,6 +2,7 @@ package com.yan.referencecount.dump.objectcalculate
 
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import com.dodola.jvmtilib.JVMTIHelper
 import java.lang.reflect.Modifier
 import java.util.*
@@ -22,14 +23,59 @@ class ObjectCalculator {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return -1
         }
-        if (!isLoad) {
-            JVMTIHelper.init(context)
-            isLoad = true
+        loadJmvTI()
+
+        return fullSizeOf(obj)
+    }
+
+
+    private val visitedCache = LinkedList<IdentityHashMap<Any, Any>>()
+    private fun getVisited(): IdentityHashMap<Any, Any> {
+        return synchronized(visitedCache) {
+            val visited = visitedCache.pollFirst() ?: IdentityHashMap<Any, Any>()
+            visited
         }
-        return try {
-            fullSizeOf(obj)
-        } catch (ignore: Throwable) {
-            -1
+    }
+
+    private fun cacheVisited(visited: IdentityHashMap<Any, Any>) {
+        if (visitedCache.size > 10) return
+        synchronized(visitedCache) {
+            visited.clear()
+            if (!visitedCache.contains(visited)) visitedCache.offer(visited)
+        }
+    }
+
+    private val stackCache = LinkedList<LinkedList<Any>>()
+    private fun getStack(): LinkedList<Any> {
+        return synchronized(stackCache) {
+            val stack = stackCache.pollFirst() ?: LinkedList<Any>()
+            stack
+        }
+    }
+
+    private fun cacheStack(stack: LinkedList<Any>) {
+        if (stackCache.size > 10) return
+        synchronized(stackCache) {
+            stackCache.clear()
+            if (!stackCache.contains(stack)) stackCache.offer(stack)
+        }
+    }
+
+    private fun loadJmvTI() {
+        if (!isLoad) {
+            synchronized(ins) {
+                if (!isLoad) {
+                    try {
+                        Log.d("loadJmvTI", "loadJmvTI init")
+                        JVMTIHelper.init(context)
+                        isLoad = true
+                        Log.d("loadJmvTI", "loadJmvTI ok")
+                    } catch (e: Throwable) {
+                        e.printStackTrace()
+                        Log.d("loadJmvTI", "loadJmvTI error")
+                    }
+                }
+            }
         }
     }
 
@@ -47,19 +93,22 @@ class ObjectCalculator {
      * @param obj object to calculate size of
      * @return object size
      */
-    private val visited = IdentityHashMap<Any, Any>()
-    private val stack = LinkedList<Any>()
 
     private fun fullSizeOf(obj: Any): Long {
-        visited.clear()
-        stack.clear()
-        var result = internalSizeOf(obj, stack, visited)
-        while (!stack.isEmpty()) {
-            result += internalSizeOf(stack.pop(), stack, visited)
+        val visited = getVisited()
+        val stack = getStack()
+        var result = 0L
+
+        try {
+            result = internalSizeOf(obj, stack, visited)
+            while (!stack.isEmpty()) {
+                result += internalSizeOf(stack.pollFirst(), stack, visited)
+            }
+        } catch (ignore: Throwable) {
         }
-        // help gc
-        visited.clear()
-        stack.clear()
+
+        cacheVisited(visited)
+        cacheStack(stack)
         return result
     }
 
