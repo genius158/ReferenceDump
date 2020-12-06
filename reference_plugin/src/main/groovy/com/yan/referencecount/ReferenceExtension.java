@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 public class ReferenceExtension {
+    static final String JAVA_JVM_HELPER = "com.dodola.jvmtilib.JVMTIHelper";
+    static final String PLUGIN_OBJECT_CALCULATER = "com.yan.referencecount.dump.objectcalculate";
+
     static final String PLUGIN_LIBRARY = "com.yan.referencecount.dumps";
     static final String PLUGIN_LIBRARY_REFERENCE = "com/yan/referencecount/dumps/ReferenceMgr";
     static final String PLUGIN_LIBRARY_REFERENCE_ASYNCOFFER = "asyncOffer";
@@ -95,6 +98,14 @@ public class ReferenceExtension {
 
     public boolean isLib(String className) {
         return className.contains(PLUGIN_LIBRARY);
+    }
+
+    public boolean isJvmHelper(String className) {
+        return className.contains(JAVA_JVM_HELPER);
+    }
+
+    public boolean isObjectCalculator(String className) {
+        return className.contains(PLUGIN_OBJECT_CALCULATER);
     }
 
 
