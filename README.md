@@ -1,6 +1,6 @@
 # reference-plugin
 dump new出来的对象个数，大小   
-内存占用大小目前使用jvm ti，android9及以上才支持
+内存占用大小目前使用jvm ti，android9及以上才支持，还是耗时的，可以先dump数量，再考虑是否需要dump 内存大小
 
 ```
 日志
