@@ -37,7 +37,7 @@ public class ReferencePlugin implements Plugin<Project> {
         ReferenceExtension referenceExtension = project.getExtensions().create("referenceExt", ReferenceExtension.class);
         project.afterEvaluate(p -> {
             if (referenceExtension.runVariant == RunVariant.DEBUG) {
-                project.getDependencies().add("implementation", "com.yan.referencedumps:referencedumpsview:1.0.9");
+                project.getDependencies().add("implementation", "com.yan.referencedumps:referencedumpsview:1.1.0");
             }
         });
 

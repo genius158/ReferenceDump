@@ -59,7 +59,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
 
     implementation project(":router")
-//    implementation project(":referencedumpsview")
+    implementation project(":referencedumpsview")
 //    implementation 'com.yan.burial:burial-plugin:1.1.2'
     api "com.alibaba:arouter-api:$rootProject.arouterVersion"
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
