@@ -38,7 +38,8 @@ gradle.projectsLoaded { g ->
         def modelDependencies = project.getExtensions().create("modelDependencies", ModelDependencies.class)
         project.afterEvaluate {
             modelDependencies.implementations.each { module ->
-                if (moduleListConfig.find { entity -> entity.key.contains(module.name) } == null) {
+                def withModule = moduleListConfig.find { entity -> entity.key.replace(":", "") == module.name } == null
+                if (withModule) {
                     project.dependencies { implementation module }
                 }
             }

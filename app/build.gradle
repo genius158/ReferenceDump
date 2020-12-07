@@ -47,6 +47,7 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/referencedumpsview_release.kotlin_module'
     }
 }
 
@@ -59,7 +60,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
 
     implementation project(":router")
-    implementation project(":referencedumpsview")
+//    implementation project(":referencedumpsview")
 //    implementation 'com.yan.burial:burial-plugin:1.1.2'
     api "com.alibaba:arouter-api:$rootProject.arouterVersion"
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
@@ -84,23 +85,23 @@ buildscript {
     }
 }
 
-apply plugin: 'reference-plugin'
-referenceExt {
-    logEnable = false
-    // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
-    runVariant = 'DEBUG'
-    // 只插桩到当前配置类，不为空，ignoreList失效
-    //  foreList = ['com.burial.test.TestView']
-
-    // 有些第三次jar包混淆后由些特殊符号，在EXTERNAL_LIBRARIES域下
-    // 只包插桩到这些
-//    librariesOnly = ['androidx.']
-    // 插桩忽略名单
-     ignoreList = ['com.yan.burial.method.timer']
-
-    // 作用域
-    scopes = ['PROJECT', 'SUB_PROJECTS']
-}
+//apply plugin: 'reference-plugin'
+//referenceExt {
+//    logEnable = false
+//    // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
+//    runVariant = 'DEBUG'
+//    // 只插桩到当前配置类，不为空，ignoreList失效
+//    //  foreList = ['com.burial.test.TestView']
+//
+//    // 有些第三次jar包混淆后由些特殊符号，在EXTERNAL_LIBRARIES域下
+//    // 只包插桩到这些
+////    librariesOnly = ['androidx.']
+//    // 插桩忽略名单
+//     ignoreList = ['com.yan.burial.method.timer']
+//
+//    // 作用域
+//    scopes = ['PROJECT', 'SUB_PROJECTS']
+//}
 
 apply plugin: 'burial-plugin'
 

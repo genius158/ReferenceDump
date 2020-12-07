@@ -43,3 +43,12 @@ modelDependencies {
     implementation project(":test2")
 }
 
+apply plugin: 'reference-plugin'
+referenceExt {
+    logEnable = true
+    // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
+    runVariant = 'DEBUG'
+
+    // 作用域
+    scopes = ['PROJECT']
+}

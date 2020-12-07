@@ -13,11 +13,14 @@ import com.yan.router.TestRouter;
  */
 @Route(path = TestRouter.ROUTER)
 public class TestRouterImpl implements TestRouter {
+    private Object test = new Object();
+
     @Override
     public void sayTest() {
-        PluginRouterMgr.getRouter().sayTest();
+        String msg = "sayTestsayTestsayTestsayTestsayTestsayTest";
+        Log.e("sayTest", msg);
 
-        Log.e("sayTest", "sayTestsayTestsayTestsayTestsayTestsayTest");
+        PluginRouterMgr.getRouter().sayTest();
     }
 
     @Override
