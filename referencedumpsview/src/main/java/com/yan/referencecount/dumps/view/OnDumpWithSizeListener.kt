@@ -143,6 +143,8 @@ internal class OnDumpWithSizeListener private constructor() : OnDumpListener {
                 val size = dumpSize(rw.get())
                 rw.extra = size
             }
+            Log.e("DumpRef", "calculate    ---- ${countAtomic?.get()} ----  ${referenceWeak?.get()?.javaClass}  ---- ${Thread.currentThread().name}")
+
             if (countAtomic?.decrementAndGet() ?: 1 <= 0) {
                 referenceWeakMap?.let { rwm -> dump(rwm, true) }
             }

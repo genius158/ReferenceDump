@@ -12,7 +12,7 @@
 
         <provider
             android:name=".AutoShowProvider"
-            android:authorities="com.yan.referencecount.dumps.view"
+            android:authorities="${applicationId}.dumps.view"
             android:exported="false" />
     </application>
 </manifest>

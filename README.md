@@ -23,7 +23,7 @@ END--------------------------------------------------
 ## how to use 
 in project mode
 ```
-    classpath 'com.yan.referencecount:reference_plugin:1.1.1'
+    classpath 'com.yan.referencecount:reference_plugin:1.1.4'
 ```
  in app module
 ```
