@@ -20,9 +20,14 @@ class ObjectCalculator {
 
     private var isLoad = false
     fun objectSize(obj: Any): Long {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
-            return -1
-        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) return -1
+        loadJmvTI()
+
+        return JVMTIHelper.getObjectSize(obj)
+    }
+
+    fun objectSizeFull(obj: Any): Long {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) return -1
         loadJmvTI()
 
         return fullSizeOf(obj)
