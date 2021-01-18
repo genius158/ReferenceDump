@@ -36,9 +36,20 @@ internal class OnDumpWithSizeListener private constructor() : OnDumpListener {
         return dumpSizeLock.withLock { dumpSize.pollFirst() }
     }
 
+    private val firstLoad by lazy {
+        ObjectCalculator.ins.objectSizeFull(1)
+        Log.e("DumpRef", "DumpRef firstLoad firstLoad ")
+    }
+
     private fun dumpSize(obj: Any?): Long {
         obj ?: return 0
-        return ObjectCalculator.ins.objectSize(obj).coerceAtLeast(0)
+        firstLoad
+
+        return try {
+            ObjectCalculator.ins.objectSizeFull(obj).coerceAtLeast(0)
+        } catch (ignore: Throwable) {
+            return 0L
+        }
     }
 
     override fun onDump(classMap: HashMap<Class<*>, ArrayList<ReferenceWeak<Any?>>>) {

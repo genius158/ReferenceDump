@@ -10,6 +10,9 @@ public class ReferenceMgr {
     public static void dump() {
         reference.dump();
     }
+    public static void dumpNow(OnDumpListener onDump) {
+        reference.dumpNow(onDump);
+    }
 
     public static void setOnDumpListener(OnDumpListener onDumpListener) {
         if (onDumpListener != null) reference.setOnDumpListener(onDumpListener);

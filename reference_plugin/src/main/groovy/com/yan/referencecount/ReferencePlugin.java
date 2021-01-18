@@ -32,12 +32,12 @@ public class ReferencePlugin implements Plugin<Project> {
         if (extension == null) {
             throw new RuntimeException("error when BurialPlugin apply");
         }
-        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.1.4");
+        project.getDependencies().add("api", "com.yan.referencedumps:referencedumps:1.1.5");
 
         ReferenceExtension referenceExtension = project.getExtensions().create("referenceExt", ReferenceExtension.class);
         project.afterEvaluate(p -> {
             if (referenceExtension.runVariant == RunVariant.DEBUG) {
-                project.getDependencies().add("implementation", "com.yan.referencedumps:referencedumpsview:1.1.3");
+                project.getDependencies().add("implementation", "com.yan.referencedumps:referencedumpsview:1.2.4");
             }
         });
 

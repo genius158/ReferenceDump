@@ -37,9 +37,15 @@ internal class ReferenceKernel : OnDumpListener {
         }
     }
 
+    fun dumpNow(onDump: OnDumpListener) {
+        cleanUp()
+        onDump.onDump(referenceWeakMap)
+    }
+
     /**
      * 清理空引用
      */
+    @Synchronized
     private fun cleanUp() {
         val mapIterator = referenceWeakMap.iterator()
         while (mapIterator.hasNext()) {

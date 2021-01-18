@@ -1,6 +1,7 @@
 apply from: "./moduleconfig.gradle"
 
 if (!hookInclude || foreIncludeAll) {
+//    include ':kwaifork'
     include ':test2'
     include ':objectcalculate'
 //    include ':jvmtilib'

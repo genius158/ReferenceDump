@@ -10,8 +10,6 @@ import com.alibaba.android.arouter.launcher.ARouter
 class ModuleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
         ARouter.init(this)
     }
-
 }

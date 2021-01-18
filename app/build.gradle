@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -49,6 +48,10 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/referencedumpsview_release.kotlin_module'
     }
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -60,11 +63,12 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
 
     implementation project(":router")
-//    implementation project(":referencedumpsview")
+    implementation project(":referencedumpsview")
 //    implementation 'com.yan.burial:burial-plugin:1.1.2'
     api "com.alibaba:arouter-api:$rootProject.arouterVersion"
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
 }
+
 
 
 modelDependencies {
@@ -117,4 +121,14 @@ burialExt {
     ignoreList = ['com.yan.referencecount']
     // 作用域 PROJECT,SUB_PROJECTS,EXTERNAL_LIBRARIES,TESTED_CODE,PROVIDED_ONLY
     scopes = ['PROJECT', 'SUB_PROJECTS', 'EXTERNAL_LIBRARIES']
+}
+
+apply plugin: 'reference-plugin'
+referenceExt {
+    logEnable = true
+    // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
+    runVariant = 'DEBUG'
+
+    // 作用域
+    scopes = ['PROJECT']
 }
