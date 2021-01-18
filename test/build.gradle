@@ -1,8 +1,7 @@
+moduleApply { plugin 'com.android.library' }
 
-apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
 
 android {
     compileSdkVersion 29
@@ -43,12 +42,3 @@ modelDependencies {
     implementation project(":test2")
 }
 
-apply plugin: 'reference-plugin'
-referenceExt {
-    logEnable = true
-    // 插件工作环境 DEBUG, RELEASE, ALWAYS, NEVER
-    runVariant = 'DEBUG'
-
-    // 作用域
-    scopes = ['PROJECT']
-}

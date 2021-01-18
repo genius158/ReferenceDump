@@ -8,16 +8,16 @@ import com.alibaba.android.arouter.facade.template.IProvider
  * @author Bevan (Contact me: https://github.com/genius158)
  * @since  2020/6/28
  */
-class PluginRouterMgr : Plugin2Router {
+class Test2RouterMgr : Test2Router {
 
     companion object {
         @JvmStatic
-        val router: PluginRouterMgr by lazy { PluginRouterMgr() }
+        val ROUTER: Test2RouterMgr by lazy { Test2RouterMgr() }
     }
 
-    private val real by lazy { getRouter(Plugin2Router::class) }
+    private val real by lazy { getRouter(Test2Router::class) }
     override fun sayTest() {
-        if (real==null)Log.e("sayTest","no pluginimpl ")
+        if (real == null) Log.e("sayTest", "test2 no pluginimpl ")
         real?.sayTest()
     }
 
@@ -26,7 +26,7 @@ class PluginRouterMgr : Plugin2Router {
 
 }
 
-interface Plugin2Router : IProvider {
+interface Test2Router : IProvider {
 
     fun sayTest()
 

@@ -1,13 +1,10 @@
 ext.moduleListConfig = [:]
 
 ///////////////////////// 自定义部分开始 //////////////////////////////
-ext {
-    // 强制全部依赖
-    foreIncludeAll = true
+// 强制全部依赖
+ext.foreIncludeAll = true
 
-    // 哪些模块需要自动lib转app
-    autoModule = [":test", ":test2"]
-}
+
 // 只引入test模块
 //includeModule(":test", [":test2", ":router", ":moduleadapter"])
 includeModule(":test2", [":router", ":moduleadapter"])
@@ -32,6 +29,7 @@ class ModelDependencies {
     }
 }
 
+
 // 模块化的时候控制app对模块的引用
 gradle.projectsLoaded { g ->
     g.rootProject.getSubprojects().each { Project project ->
@@ -39,13 +37,12 @@ gradle.projectsLoaded { g ->
         project.afterEvaluate {
             modelDependencies.implementations.each { module ->
                 def withModule = moduleListConfig.find { entity -> entity.key.replace(":", "") == module.name } == null
-                if (withModule) {
-                    project.dependencies { implementation module }
-                }
+                if (withModule) project.dependencies { implementation module }
             }
         }
     }
 }
+
 
 //////////////////////////divide//////////////////////////////////
 def includeModule(module) {
@@ -59,36 +56,38 @@ def includeModule(module, dependencies) {
 }
 
 //////////////////////////divide//////////////////////////////////
-// 模块自动转换
+
+/////////////////////////moduleApply start//////////////////////////////
+
+// app lib 切换域
+class ModuleApply {
+    Closure closure
+
+    def plugin(String pluginId) {
+        closure.call(pluginId)
+    }
+}
+
 gradle.projectsLoaded { g ->
     g.rootProject.getSubprojects().each { Project project ->
-        def build = project.buildscript.sourceFile
-        if (!build.exists()) return null
-
-        autoModule.each { String module ->
-            module = module.replace(":", "")
+        def moduleApply = project.getExtensions().create("moduleApply", ModuleApply.class)
+        moduleApply.closure = { pluginId ->
+            def module = project.name
             if (module == project.name) {
                 def hookInclude = moduleListConfig.find { entity -> entity.key.replace(":", "") == module } != null
                 if (hookInclude) {
-                    project.ant.replace(
-                            file: build,
-                            token: "apply plugin: 'com.android.library'",
-                            value: "apply plugin: 'com.android.application'"
-                    )
+                    project.pluginManager.apply('com.android.application')
                     insertAppConfig(project)
                     println "hookInclude ${project.name} do library to application "
                 } else {
-                    project.ant.replace(
-                            file: build,
-                            token: "apply plugin: 'com.android.application'",
-                            value: "apply plugin: 'com.android.library'"
-                    )
-                    println "hookInclude ${project.name} do application to library "
+                    project.pluginManager.apply('com.android.library')
                 }
             }
         }
     }
 }
+
+/////////////////////////moduleApply end////////////////////////////////
 
 /**
  * 注入同时依赖module 的manifest
@@ -129,7 +128,6 @@ static def insertAppConfig(Project p) {
         }
 
         p.android.sourceSets.main.manifest.srcFile("src/module/AndroidManifest.xml")
-
 
         def moduleJavaDir = new File(p.projectDir.canonicalPath + "/src/module/java")
         if (!moduleJavaDir.exists()) moduleJavaDir.mkdirs()

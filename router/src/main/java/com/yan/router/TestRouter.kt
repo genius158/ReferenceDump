@@ -17,7 +17,7 @@ class TestRouterMgr : TestRouter {
 
     private val real by lazy { getRouter(TestRouter::class) }
     override fun sayTest() {
-        if (real==null) Log.e("sayTest","no testimpl ")
+        if (real==null) Log.e("sayTest","test no testimpl ")
         real?.sayTest()
     }
 

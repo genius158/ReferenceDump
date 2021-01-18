@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.yan.router.PluginRouterMgr;
+import com.yan.router.Test2RouterMgr;
 import com.yan.router.TestRouter;
 
 /**
@@ -17,10 +17,10 @@ public class TestRouterImpl implements TestRouter {
 
     @Override
     public void sayTest() {
-        String msg = "sayTestsayTestsayTestsayTestsayTestsayTest";
+        String msg = "test sayTestsayTestsayTestsayTestsayTestsayTest";
         Log.e("sayTest", msg);
 
-        PluginRouterMgr.getRouter().sayTest();
+        Test2RouterMgr.getROUTER().sayTest();
     }
 
     @Override
