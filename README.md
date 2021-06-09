@@ -1,4 +1,7 @@
-# reference-plugin 
+# reference-plugin
+
+### tip:jCenter 传不了了，需要测试本地直接引用~~
+
 [demo.apk](https://github.com/genius158/ReferenceDump/blob/main/demo.apk)     
 
 dump new出来的对象个数，大小   

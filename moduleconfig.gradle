@@ -7,7 +7,7 @@ ext.foreIncludeAll = true
 
 // 只引入test模块
 //includeModule(":test", [":test2", ":router", ":moduleadapter"])
-includeModule(":test2", [":router", ":moduleadapter"])
+//includeModule(":test2", [":router", ":moduleadapter"])
 
 ///////////////////////// 自定义部分结束 //////////////////////////////
 
