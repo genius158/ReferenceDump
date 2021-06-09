@@ -43,7 +43,12 @@ public final class ReferenceMethodAdapter extends LocalVariablesSorter implement
 
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String descriptor, boolean isInterface) {
-        if (referenceExtension.isConstructor(name) && newClazzSet.contains(owner) && opcode == INVOKESPECIAL) {
+        // hook 反射方法
+        //methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/reflect/Constructor", "newInstance", "([Ljava/lang/Object;)Ljava/lang/Object;", false);
+        if (opcode == INVOKEVIRTUAL&&"java/lang/reflect/Constructor".equals(owner) && "newInstance".equals(name) && "([Ljava/lang/Object;)Ljava/lang/Object;".equals(descriptor)) {
+            super.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
+            applyAsyncOffer();
+        }else if (referenceExtension.isConstructor(name) && newClazzSet.contains(owner) && opcode == INVOKESPECIAL) {
             super.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
             applyAsyncOffer();
             mv.visitTypeInsn(CHECKCAST, owner);

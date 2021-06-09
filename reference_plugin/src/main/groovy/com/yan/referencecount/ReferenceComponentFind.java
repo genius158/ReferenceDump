@@ -34,7 +34,11 @@ public class ReferenceComponentFind {
         if (variants == null) return;
         variants.all(bv -> bv.getOutputs().all(baseVariantOutput -> {
             baseVariantOutput.getProcessManifest().doLast(task -> {
-                File manifest = baseVariantOutput.getProcessResources().getManifestFile();
+                File manifest = null;
+                try {
+                    manifest = baseVariantOutput.getProcessResourcesProvider().get().getManifestFile();
+                } catch (Throwable ignore) {
+                }
                 try {
                     parseXml(manifest);
                 } catch (Exception e) {
